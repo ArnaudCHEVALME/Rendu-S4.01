@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: api
+    depends_on: 
+      - db
+    build: .
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      FIMU_HOSTNAME: db
+      FIMU_USER: $FIMU_USER
+      FIMU_PASSWORD: $FIMU_PASSWORD
+      FIMU_DB_NAME: $FIMU_DB_NAME
+      FIMU_PORT: $FIMU_PORT
+      FIMU_AUTH_SECRET: $FIMU_AUTH_SECRET
+
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    env_file: ./.env
+    environment:
+      POSTGRES_USER: $FIMU_USER
+      POSTGRES_PASSWORD: $FIMU_PASSWORD
+      POSTGRES_DB: $FIMU_DB_NAME
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
