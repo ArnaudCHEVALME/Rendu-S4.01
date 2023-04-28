@@ -20,24 +20,26 @@ import typestandRouter from "./routes/typestand.router";
 import utilisateurRouter from "./routes/utilisateur.router";
 
 import dotenv from "dotenv";
-import path from 'path';
-import cors from "cors";
-import bodyParser from "body-parser";
-import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
-import passport from "passport";
+dotenv.config();
 
-dotenv.config({
-    path: path.resolve(__dirname, './.env')
-})
-const PORT = process.env.FIMU_PORT
+import cors from "cors";
 
 const app = express();
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://localhost:8080'
+    ],
+    credentials: true
+}));
 
-app.use(passport.initialize());
+import bodyParser from "body-parser";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 const swaggerOptions = {
     definition: {
@@ -49,7 +51,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: `http://localhost:${PORT}`,
+                url: 'http://localhost:3000',
                 description: 'Serveur local'
             }
         ]
@@ -78,7 +80,6 @@ app.use('/typeactu', typeactuRouter);
 app.use('/typescene', typesceneRouter);
 app.use('/typestand', typestandRouter);
 app.use('/utilisateur', utilisateurRouter);
-
 app.use('/status', (req, res) => {
     res.status(200).json({
         error: 0,
@@ -93,11 +94,43 @@ app.use('*', (req, res) => {
     });
 });
 
-app.use(cors({
-    origin: ['http://localhost:8080', "https://google.com"],
-    credentials: true
-}));
+app.listen(process.env.PORT, () => {
+    console.log(`Server started at port ${process.env.PORT}`);
+});
 
-app.listen(PORT, () => {
-    console.log(`Server started at port ${PORT}`);
+
+const http = require('http');
+const server = http.createServer(app);
+
+const socketIO = require('socket.io');
+const io = socketIO(server);
+
+const port = process.env.PORT || 3000;
+
+// Route pour le point d'entrée de l'API
+app.get('/', (req, res) => {
+    res.send('API Chat Server');
+});
+
+// Gérer la connexion de nouveaux clients
+io.on('connection', (socket) => {
+    console.log('Client connecté');
+
+    // Écouter les événements de chat
+    socket.on('chat message', (msg) => {
+        console.log('Message reçu: ' + msg);
+
+        // Diffuser le message à tous les clients connectés
+        io.emit('chat message', msg);
+    });
+
+    // Gérer la déconnexion des clients
+    socket.on('disconnect', () => {
+        console.log('Client déconnecté');
+    });
+});
+
+// Démarrer le serveur
+server.listen(port, () => {
+    console.log(`Serveur démarré sur le port ${port}`);
 });
