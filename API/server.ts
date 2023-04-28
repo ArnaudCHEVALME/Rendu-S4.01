@@ -21,23 +21,29 @@ import utilisateurRouter from "./routes/utilisateur.router";
 
 import dotenv from "dotenv";
 import path from 'path';
-import cors from "cors";
-import bodyParser from "body-parser";
-import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
-import passport from "passport";
-
 dotenv.config({
     path: path.resolve(__dirname, './.env')
 })
 const PORT = process.env.FIMU_PORT
 
-const app = express();
+import cors from "cors";
 
-app.use(passport.initialize());
+const app = express();
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://localhost:8080'
+    ],
+    credentials: true
+}));
+
+import bodyParser from "body-parser";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 const swaggerOptions = {
     definition: {
@@ -79,6 +85,11 @@ app.use('/typescene', typesceneRouter);
 app.use('/typestand', typestandRouter);
 app.use('/utilisateur', utilisateurRouter);
 
+import limiter from "./middleware/rate-limiter";
+app.use(limiter);
+
+
+
 app.use('/status', (req, res) => {
     res.status(200).json({
         error: 0,
@@ -89,14 +100,9 @@ app.use('/status', (req, res) => {
 app.use('*', (req, res) => {
     res.status(404).json({
         error: 1,
-        message: "La ressource demandée n'existe pas."
+        message: "La ressource demandÃ©e n'existe pas."
     });
 });
-
-app.use(cors({
-    origin: ['http://localhost:8080', "https://google.com"],
-    credentials: true
-}));
 
 app.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`);
