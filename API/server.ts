@@ -1,4 +1,6 @@
 import express from 'express';
+import cluster from 'cluster';
+import os from 'os';
 
 import actualiteRouter from "./routes/actualite.router";
 import artisteRouter from './routes/artiste.router';
@@ -98,6 +100,19 @@ app.use(cors({
     credentials: true
 }));
 
-app.listen(PORT, () => {
-    console.log(`Server started at port ${PORT}`);
-});
+if (cluster.isMaster) {
+    const nbCpus = os.cpus().length;
+    console.log(`Nombre de CPUs: ${nbCpus}`);
+    for (let i = 0; i < nbCpus; i++) {
+        cluster.fork();
+    }
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} killed`);
+        cluster.fork();
+    });
+
+} else {
+    app.listen(PORT, () => {
+        console.log(`Server started at port ${PORT}`);
+    });
+}
