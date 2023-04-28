@@ -21,29 +21,23 @@ import utilisateurRouter from "./routes/utilisateur.router";
 
 import dotenv from "dotenv";
 import path from 'path';
+import cors from "cors";
+import bodyParser from "body-parser";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+import passport from "passport";
+
 dotenv.config({
     path: path.resolve(__dirname, './.env')
 })
 const PORT = process.env.FIMU_PORT
 
-import cors from "cors";
-
 const app = express();
-app.use(cors({
-    origin: [
-        'http://localhost:8080',
-        'https://localhost:8080'
-    ],
-    credentials: true
-}));
 
-import bodyParser from "body-parser";
+app.use(passport.initialize());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
 
 const swaggerOptions = {
     definition: {
@@ -98,6 +92,11 @@ app.use('*', (req, res) => {
         message: "La ressource demandée n'existe pas."
     });
 });
+
+app.use(cors({
+    origin: ['http://localhost:8080', "https://google.com"],
+    credentials: true
+}));
 
 app.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`);

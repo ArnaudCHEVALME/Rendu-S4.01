@@ -10,25 +10,36 @@
             <v-card-text>
               <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field
-                  v-model="identifiant"
-                  :rules="identifiantRules"
-                  label="Identifiant"
-                  required
+                    v-model="identifiant"
+                    :rules="identifiantRules"
+                    label="Identifiant"
+                    required
                 ></v-text-field>
                 <v-text-field
-                  v-model="password"
-                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  :rules="passwordRules"
-                  :type="showPassword ? 'text' : 'password'"
-                  label="Mot de passe"
-                  required
-                  @click:append="showPassword = !showPassword"
+                    v-model="password"
+                    :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                    :rules="passwordRules"
+                    :type="showPassword ? 'text' : 'password'"
+                    label="Mot de passe"
+                    required
+                    @click:append="showPassword = !showPassword"
                 ></v-text-field>
               </v-form>
             </v-card-text>
             <v-card-actions>
+              <v-btn @click="login">
+                <v-icon left> mdi-github</v-icon>
+                Github
+              </v-btn>
+              <v-btn color="red" @click="google">
+                <v-icon left> mdi-google</v-icon>
+                Google
+              </v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="login">Login</v-btn>
+              <v-btn color="primary" @click="login">
+                <v-icon left> mdi-account</v-icon>
+                Login
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -39,6 +50,7 @@
 
 <script>
 import {post} from "@/services/axios.service";
+
 export default {
   name: "LoginView",
   data: () => ({
@@ -54,11 +66,13 @@ export default {
       (v) => !!v || "Le mot de passe est requis",
       (v) => v.length <= 20 || "Le mot de passe doit être inférieur à 20 caractères",
     ],
-    image: {backgroundImage: "url(https://www.radiofrance.fr/s3/cruiser-production/2022/05/4b1058e7-44aa-4c60-a88d-f5b9a7ad788e/1200x680_fimu_2022_generik_1920_x_1080.jpg)",
+    image: {
+      backgroundImage: "url(https://www.radiofrance.fr/s3/cruiser-production/2022/05/4b1058e7-44aa-4c60-a88d-f5b9a7ad788e/1200x680_fimu_2022_generik_1920_x_1080.jpg)",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: "100vh"},
+      height: "100vh"
+    },
   }),
   methods: {
     login() {
@@ -72,8 +86,11 @@ export default {
         console.log(error);
         alert("Identifiant ou mot de passe incorrect");
       });
-      }
+    },
+    google() {
+      window.location.href = "http://localhost:3000/auth/google";
     }
+  }
 }
 </script>
 

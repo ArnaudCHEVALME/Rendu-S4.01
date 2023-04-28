@@ -3,7 +3,7 @@ import {authHeader} from "@/services/auth.service";
 
 const axiosService = axios.create({
     baseURL: 'http://localhost:3000',
-    withCredentials: true,
+    withCredentials: false,
 });
 axiosService.interceptors.request.use(
     (config) => {

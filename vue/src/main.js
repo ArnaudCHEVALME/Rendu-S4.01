@@ -10,9 +10,9 @@ import VueSession from "vue-session";
 axios.defaults.withCredentials = true;
 Vue.use(VueAxios, axios);
 
-var options = {
+const options = {
   persist: true
-}
+};
 Vue.use(VueSession, options);
 
 Vue.config.productionTip = false
