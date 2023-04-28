@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import('../views/Artiste/ArtistesListView.vue')
   },
   {
     path: '/about',
@@ -192,6 +191,16 @@ const routes = [
     path: '/service/:id/edit',
     name: 'service-edit',
     component: () => import('../views/Service/ServiceEditView.vue')
+  },
+  {
+    path: '/auth/google/redirect',
+    name: 'google-redirect',
+    component: () => import('../components/GoogleRedirect.vue')
+  },
+  {
+    path: '/auth/github/redirect',
+    name: 'github-redirect',
+    component: () => import('../components/GithubRedirect.vue')
   }
 ]
 

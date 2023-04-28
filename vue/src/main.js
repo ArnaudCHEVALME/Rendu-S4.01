@@ -16,6 +16,13 @@ var options = {
 Vue.use(VueSession, options);
 
 Vue.config.productionTip = false
+// router.beforeEach((to, from, next) => {
+//   if (localStorage.getItem("user") && to.name !== 'Login' && from.name!=="Login") {
+//     next({ name: 'Login' })
+//   } else {
+//     next()
+//   }
+// })
 
 new Vue({
   router,
