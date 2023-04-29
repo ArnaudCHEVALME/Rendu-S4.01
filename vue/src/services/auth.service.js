@@ -17,5 +17,4 @@ function authUser() {
         return {};
     }
 }
-
 export { authHeader, authUser };

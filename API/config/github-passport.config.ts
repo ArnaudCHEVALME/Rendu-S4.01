@@ -1,5 +1,5 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20');
+const GithubStrategy = require('passport-github2');
 
 import {dbCommon} from "../models";
 
@@ -14,19 +14,21 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
-    new GoogleStrategy({
+    new GithubStrategy({
             // options for google strategy
-            callbackURL: 'http://localhost:8080/auth/google/redirect',
-            clientID: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            scope: ['profile', 'email']
+            callbackURL: 'http://localhost:8080/auth/github/redirect',
+            clientID: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            scope: ['https://www.googleapis.com/auth/plus.login',
+                'https://www.googleapis.com/auth/userinfo.email']
         },
         async (accessToken, refreshToken, profile, done) => {
             const userData = {
-                identifiant: profile.emails[0].value,
+                identifiant: profile.username,
                 motDePasse: profile.id,
                 roleId: 2
             }
+            console.log(userData)
             try {
                 const result = await findOrCreate(userData)
                 done(null, result.user)
