@@ -47,17 +47,16 @@
     </v-dialog>
     <TopMenuBar
         v-if="showNavbars && user !== {}"
-        :user="{identifiant: user.identifiant, role: user.role}"
         :items="['Déconnexion']"
-        btnChange="Changer de saison"
         :saisonSelect="tab"
+        :user="{identifiant: user.identifiant, role: user.role}"
+        btnChange="Changer de saison"
         @user-btn-click="userBtnClick"
         @switch-saison="dialog = true"
         @change-saison="changeSaison"
     ></TopMenuBar>
     <v-row>
-      <v-col cols="12" sm="2" md="2" v-if="showNavbars">
-        <Chat style="position: fixed; right: 20px; bottom: 20px"/>
+      <v-col v-if="showNavbars" cols="12" md="2" sm="2">
         <SideMenuBar
             :data="menuData"
             title="Navigation"
@@ -65,18 +64,18 @@
             @change-saison="changeSaison"
         ></SideMenuBar>
       </v-col>
-      <v-col cols="12" sm="10" md="10" v-if="showNavbars">
+      <v-col v-if="showNavbars" cols="12" md="10" sm="10">
         <v-main>
           <router-view/>
         </v-main>
       </v-col>
-      <v-col cols="12" sm="12" md="12" v-else>
+      <v-col v-else cols="12" md="12" sm="12">
         <v-main>
           <router-view/>
         </v-main>
       </v-col>
     </v-row>
-
+    <Chat style="position: fixed; right: 20px; bottom: 20px"/>
   </v-app>
 </template>
 
