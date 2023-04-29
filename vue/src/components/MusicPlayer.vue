@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="player-container">
     <h3>Music Player</h3>
     <div class="player">
       <v-text-field
@@ -77,5 +77,15 @@ export default {
   padding-left: 3px;
   padding-right: 3px;
   padding-top: 10px;
+}
+
+.player-container {
+  background: #ff5252;
+  border: #3c3c3c solid 1px;
+  border-radius: 5px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: -15px;
 }
 </style>
