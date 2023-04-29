@@ -385,7 +385,7 @@ createCommonSchema()
         console.log("Done !");
     })
     .then(async () => {
-        // await insertData();
+        //await insertData();
     })
     .catch(err => {
         console.error(err);
