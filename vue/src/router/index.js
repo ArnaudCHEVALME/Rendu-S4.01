@@ -194,12 +194,12 @@ const routes = [
   },
   {
     path: '/auth/google/redirect',
-    name: 'google-redirect',
+    name: 'redirect',
     component: () => import('../components/GoogleRedirect.vue')
   },
   {
     path: '/auth/github/redirect',
-    name: 'github-redirect',
+    name: 'redirect',
     component: () => import('../components/GithubRedirect.vue')
   }
 ]
