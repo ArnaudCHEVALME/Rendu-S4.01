@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="topbar">
-      <div class="d-inline-flex">
+      <div class="d-inline-flex align-center">
         <v-menu
             down
             :offset-y="true"
@@ -26,9 +26,6 @@
             >
               <v-list-item-title>{{ item }}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="openChat">
-              <v-list-item-title>Chat</v-list-item-title>
-            </v-list-item>
           </v-list>
         </v-menu>
         <v-btn
@@ -50,12 +47,7 @@
             style="width: 15%"
             @change="$emit('change-saison', defaultSelect)"
         ></v-select>
-        <v-card>
-          <v-btn @click="openChat()" >Open Chat</v-btn>
-          <v-card v-if="showChat">
-            <Chat></Chat>
-          </v-card>
-        </v-card>
+
       </div>
     </div>
   </nav>
@@ -65,12 +57,8 @@
 
 export default {
   name: "TopMenuBar",
-  components:{
-    Chat: ()=> import('@/components/ChatMenu.vue')
-  },
   data: () => ({
     defaultSelect: null,
-    showChat: false
   }),
   props: {
     user: Object,
@@ -80,14 +68,7 @@ export default {
   },
   created() {
     this.defaultSelect = this.saisonSelect[0];
-  },
-  methods:{
-    openChat() {
-      this.showChat = true;
-      this.$emit("chat-opened");
-    }
-  }
-}
+  },}
 </script>
 
 <style scoped>

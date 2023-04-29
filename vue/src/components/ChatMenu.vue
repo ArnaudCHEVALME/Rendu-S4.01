@@ -1,8 +1,13 @@
 <template>
-  <div class="chat-container">
-    <div v-for="message in messages" :key="message" class="message">{{ message }}</div>
-    <input v-model="newMessage" @keyup.enter="sendMessage" class="input-message" />
-  </div>
+  <v-card style="display: flex; flex-direction: column; align-content: center; justify-content: center">
+    <v-btn @click="toggleChat()" >{{ visible? "Close chat" : "Open Chat" }}</v-btn>
+    <v-card v-if="visible">
+      <div class="chat-container">
+        <div v-for="message in messages" :key="message" class="message">{{ message }}</div>
+        <input v-model="newMessage" class="input-message" @keyup.enter="sendMessage"/>
+      </div>
+    </v-card>
+  </v-card>
 </template>
 
 <script>
@@ -14,16 +19,18 @@ export default {
       messages: [],
       newMessage: "",
       socket: null,
+      visible: false
     };
   },
   methods: {
     async sendMessage() {
-
       this.socket.emit('newMessage', this.newMessage);
       this.messages.push(this.newMessage)
       this.newMessage = "";
-
     },
+    toggleChat() {
+      this.visible = !this.visible;
+    }
   },
   mounted() {
     this.socket = io('process.env.PORT || 3000;');
