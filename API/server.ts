@@ -27,7 +27,6 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
-import passport from "passport";
 
 dotenv.config({
     path: path.resolve(__dirname, './.env')
@@ -35,8 +34,13 @@ dotenv.config({
 const PORT = process.env.FIMU_PORT
 
 const app = express();
-
-app.use(passport.initialize());
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://localhost:8080'
+    ],
+    credentials: true
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -94,11 +98,6 @@ app.use('*', (req, res) => {
         message: "La ressource demandée n'existe pas."
     });
 });
-
-app.use(cors({
-    origin: ['http://localhost:8080', "https://google.com"],
-    credentials: true
-}));
 
 if (cluster.isMaster) {
     const nbCpus = os.cpus().length;

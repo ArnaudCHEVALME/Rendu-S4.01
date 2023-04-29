@@ -35,12 +35,12 @@ export default (sequelize: Sequelize, schema: string) => {
         hooks: {
             beforeCreate: async (utilisateur: any) => {
                 if (utilisateur.motDePasse) {
-                    utilisateur.motDePasse = await hash(utilisateur.motDePasse, 20);
+                    utilisateur.motDePasse = await hash(utilisateur.motDePasse, 10);
                 }
             },
             beforeUpdate: async (utilisateur: any) => {
                 if (utilisateur.motDePasse) {
-                    utilisateur.motDePasse = await hash(utilisateur.motDePasse, 20);
+                    utilisateur.motDePasse = await hash(utilisateur.motDePasse, 10);
                 }
             }
         }
