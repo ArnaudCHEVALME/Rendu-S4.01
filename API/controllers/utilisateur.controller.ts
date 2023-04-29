@@ -24,7 +24,7 @@ const getUtilisateurs = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des utilisateurs."
@@ -59,7 +59,7 @@ const getUtilisateurById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération de l'utilisateur."
@@ -79,7 +79,7 @@ const createUtilisateur = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création de l'utilisateur."
@@ -105,7 +105,7 @@ const editUtilisateur = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de l'édition de l'utilisateur."
@@ -127,7 +127,7 @@ const deleteUtilisateurs = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de l'utilisateur."
@@ -153,7 +153,7 @@ const deleteUtilisateurById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de l'utilisateur."

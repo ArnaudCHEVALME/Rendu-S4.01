@@ -1,4 +1,6 @@
 import express from 'express';
+import cluster from 'cluster';
+import os from 'os';
 
 import actualiteRouter from "./routes/actualite.router";
 import artisteRouter from './routes/artiste.router';
@@ -18,6 +20,7 @@ import typeactuRouter from "./routes/typeactu.router";
 import typesceneRouter from "./routes/typescene.router";
 import typestandRouter from "./routes/typestand.router";
 import utilisateurRouter from "./routes/utilisateur.router";
+import musicStreamRouter from "./routes/music-stream.router";
 
 import dotenv from "dotenv";
 import path from 'path';
@@ -25,7 +28,6 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
-import passport from "passport";
 
 dotenv.config({
     path: path.resolve(__dirname, './.env')
@@ -33,8 +35,13 @@ dotenv.config({
 const PORT = process.env.FIMU_PORT
 
 const app = express();
-
-app.use(passport.initialize());
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://localhost:8080'
+    ],
+    credentials: true
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -78,6 +85,7 @@ app.use('/typeactu', typeactuRouter);
 app.use('/typescene', typesceneRouter);
 app.use('/typestand', typestandRouter);
 app.use('/utilisateur', utilisateurRouter);
+app.use('music', musicStreamRouter);
 
 app.use('/status', (req, res) => {
     res.status(200).json({
@@ -93,11 +101,19 @@ app.use('*', (req, res) => {
     });
 });
 
-app.use(cors({
-    origin: ['http://localhost:8080', "https://google.com"],
-    credentials: true
-}));
+if (cluster.isMaster) {
+    const nbCpus = os.cpus().length;
+    console.log(`Nombre de CPUs: ${nbCpus}`);
+    for (let i = 0; i < nbCpus; i++) {
+        cluster.fork();
+    }
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} killed`);
+        cluster.fork();
+    });
 
-app.listen(PORT, () => {
-    console.log(`Server started at port ${PORT}`);
-});
+} else {
+    app.listen(PORT, () => {
+        console.log(`Server started at port ${PORT}`);
+    });
+}

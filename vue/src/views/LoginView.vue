@@ -27,11 +27,11 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="login">
+              <v-btn @click="loginWithGithub">
                 <v-icon left> mdi-github</v-icon>
                 Github
               </v-btn>
-              <v-btn color="red" @click="google">
+              <v-btn color="red" @click="loginWithGoogle">
                 <v-icon left> mdi-google</v-icon>
                 Google
               </v-btn>
@@ -45,6 +45,7 @@
         </v-col>
       </v-row>
     </v-container>
+
   </div>
 </template>
 
@@ -87,8 +88,11 @@ export default {
         alert("Identifiant ou mot de passe incorrect");
       });
     },
-    google() {
+    loginWithGoogle() {
       window.location.href = "http://localhost:3000/auth/google";
+    },
+    loginWithGithub() {
+      window.location.href = "http://localhost:3000/auth/github";
     }
   }
 }

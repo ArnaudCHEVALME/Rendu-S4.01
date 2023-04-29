@@ -47,34 +47,35 @@
     </v-dialog>
     <TopMenuBar
         v-if="showNavbars && user !== {}"
-        :user="{identifiant: user.identifiant, role: user.role}"
         :items="['Déconnexion']"
-        btnChange="Changer de saison"
         :saisonSelect="tab"
+        :user="{identifiant: user.identifiant, role: user.role}"
+        btnChange="Changer de saison"
         @user-btn-click="userBtnClick"
         @switch-saison="dialog = true"
         @change-saison="changeSaison"
-        ></TopMenuBar>
+    ></TopMenuBar>
     <v-row>
-      <v-col cols="12" sm="2" md="2" v-if="showNavbars">
-          <SideMenuBar
+      <v-col v-if="showNavbars" cols="12" md="2" sm="2">
+        <SideMenuBar
             :data="menuData"
             title="Navigation"
             @select-item="selectItem"
             @change-saison="changeSaison"
-          ></SideMenuBar>
+        ></SideMenuBar>
       </v-col>
-      <v-col cols="12" sm="10" md="10" v-if="showNavbars">
+      <v-col v-if="showNavbars" cols="12" md="10" sm="10">
         <v-main>
           <router-view/>
         </v-main>
       </v-col>
-      <v-col cols="12" sm="12" md="12" v-else>
+      <v-col v-else cols="12" md="12" sm="12">
         <v-main>
           <router-view/>
         </v-main>
       </v-col>
     </v-row>
+    <Chat style="position: fixed; right: 20px; bottom: 20px"/>
   </v-app>
 </template>
 
@@ -82,11 +83,13 @@
 import {post} from "@/services/axios.service.js";
 import {mapState} from "vuex";
 import {authUser} from "@/services/auth.service";
+
 export default {
   name: 'App',
   components: {
     SideMenuBar: () => import('@/components/SideMenuBar.vue'),
     TopMenuBar: () => import('@/components/TopMenuBar.vue'),
+    Chat: () => import('@/components/ChatMenu.vue')
   },
   data: () => ({
     menuData: [],
@@ -129,7 +132,7 @@ export default {
     initMenuData() {
       if (this.user !== {} && this.user.role === 'Administrateur') {
         this.menuData = [
-          {text: 'Artistes', selected : false},
+          {text: 'Artistes', selected: false},
           {text: 'Scènes', selected: false},
           {text: 'Concerts', selected: false},
           {text: 'Planning', selected: false},
@@ -141,10 +144,9 @@ export default {
           {text: 'Services', selected: false},
           {text: 'Gestion des utilisateurs', selected: false},
         ];
-      }
-      else {
+      } else {
         this.menuData = [
-          {text: 'Artistes', selected : false},
+          {text: 'Artistes', selected: false},
           {text: 'Scènes', selected: false},
           {text: 'Concerts', selected: false},
           {text: 'Planning', selected: false},
@@ -167,9 +169,8 @@ export default {
       try {
         await post('saison/migrate-data', this.newSaison);
         window.location.reload();
-      }
-      catch (error) {
-          alert(error.response.data.message);
+      } catch (error) {
+        alert(error.response.data.message);
       }
     },
     async changeSaison(id) {
@@ -177,12 +178,10 @@ export default {
       if (id === 0) {
         data.saison = '';
         data.year = '';
-      }
-      else if (id === 1) {
+      } else if (id === 1) {
         data.saison = 'next';
         data.year = '';
-      }
-      else {
+      } else {
         data.saison = 'previous';
         data.year = '&saisonId=' + this.saison[id].id.toString();
       }
@@ -193,7 +192,7 @@ export default {
       await this.$store.commit('updateConcerts', []);
       await this.$router.push('/artiste');
     }
-   },
+  },
   computed: {
     ...mapState(['saison', 'pays']),
     showNavbars() {
@@ -211,7 +210,7 @@ export default {
         text: "Saison " + this.saison[0].annee + " - " + this.saison[0].noMois + " (suivante)",
         value: 1
       })
-      for(let i = 2; i < this.saison.length; i++) {
+      for (let i = 2; i < this.saison.length; i++) {
         tab.push({
           text: "Saison " + this.saison[i].annee + " - " + this.saison[i].noMois,
           value: i
@@ -228,8 +227,8 @@ export default {
       })
     }
   },
-  watch:{
-    $route () {
+  watch: {
+    $route() {
       this.menuData.forEach(item => {
         item.selected = false;
       });
@@ -239,7 +238,7 @@ export default {
         this.menuData[1].selected = true;
       } else if (this.$route.path.includes('/concert')) {
         this.menuData[2].selected = true;
-      }  else if (this.$route.path.includes('/planning')) {
+      } else if (this.$route.path.includes('/planning')) {
         this.menuData[3].selected = true;
       } else if (this.$route.path.includes('/categorie')) {
         this.menuData[4].selected = true;

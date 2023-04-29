@@ -7,7 +7,6 @@ const axiosService = axios.create({
 });
 axiosService.interceptors.request.use(
     (config) => {
-        console.log("REQUEST => " + config.headers);
         return {
             ...config,
             headers: {

@@ -13,7 +13,7 @@ const getNotifications = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des notifications."
@@ -39,7 +39,7 @@ const getNotificationById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération de la notification."
@@ -59,7 +59,7 @@ const createNotification = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création de la notification."
@@ -84,7 +84,7 @@ const editNotification = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification de la notification."
@@ -106,7 +106,7 @@ const deleteNotifications = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression des notifications."
@@ -131,7 +131,7 @@ const deleteNotificationById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de la notification."

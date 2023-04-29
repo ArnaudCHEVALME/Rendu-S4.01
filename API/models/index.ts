@@ -236,7 +236,8 @@ async function insertData() {
     await dbCommon.services.bulkCreate(serviceData);
     await dbCommon.typeStands.bulkCreate(typestandData);
     await dbCommon.roles.bulkCreate(roleData);
-    await dbCommon.utilisateurs.bulkCreate(utilisateurData);
+    await dbCommon.utilisateurs.create(utilisateurData[0]);
+    await dbCommon.utilisateurs.create(utilisateurData[1]);
     await dbCommon.saisons.bulkCreate(saisonData);
     await dbCommon.notifications.bulkCreate(notificationData);
 
@@ -384,7 +385,7 @@ createCommonSchema()
         console.log("Done !");
     })
     .then(async () => {
-        // await insertData();
+        //await insertData();
     })
     .catch(err => {
         console.error(err);

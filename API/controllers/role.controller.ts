@@ -13,7 +13,7 @@ const getRoles = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des roles."
@@ -39,7 +39,7 @@ const getRoleById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération du role."
@@ -59,7 +59,7 @@ const createRole = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création du role."
@@ -85,7 +85,7 @@ const editRole = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification du role."
@@ -107,7 +107,7 @@ const deleteRoles = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du role."
@@ -133,7 +133,7 @@ const deleteRoleById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du role."

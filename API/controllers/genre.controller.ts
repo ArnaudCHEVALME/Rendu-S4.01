@@ -13,7 +13,7 @@ const getGenres = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des genres."
@@ -39,7 +39,7 @@ const getGenreById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération du genre."
@@ -59,7 +59,7 @@ const createGenre = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création du genre."
@@ -84,7 +84,7 @@ const editGenre = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification du genre."
@@ -106,7 +106,7 @@ const deleteGenres = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du genre."
@@ -131,7 +131,7 @@ const deleteGenreById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du genre."
