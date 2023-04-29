@@ -5,6 +5,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const router = Router();
 
 router.get('/:videoId', async (req, res) => {
+    console.log("hello")
     const videoId = req.params.videoId;
     const url = `https://www.youtube.com/watch?v=${videoId}`;
 

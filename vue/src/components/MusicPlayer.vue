@@ -1,6 +1,6 @@
 <template>
   <div class="player-container">
-    <h3>Music Player</h3>
+    <h3>{{ this.blocked ? "Loading..." : "Music Player" }}</h3>
     <div class="player">
       <v-text-field
           label="Youtube ID"
@@ -57,6 +57,7 @@ export default {
         },
         onloaderror: (err) => {
           console.error('Failed to load audio stream', err);
+          this.blocked = false;
         },
       });
       this.audio.play();
