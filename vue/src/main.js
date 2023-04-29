@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
     console.log("to", to.name)
     console.log("user", localStorage.getItem("user"))
 
-    // redirige l'utilisateur sur la page de login si il n'est pas connecté
+    // redirige l'utilisateur sur la page de login s'il n'est pas connecté
     const loggedIn = !!localStorage.getItem("user")
     if (!loggedIn && to.name !== 'login' && to.name !== 'redirect') {
         next('/login')
