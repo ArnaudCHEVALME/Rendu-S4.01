@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "10e0a7fe-a76f-49ac-aff9-4ea7a55c4d69",
+		"name": "BDD Image Fimu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23997231"
+	},
+	"item": [
+		{
+			"name": "GETALL",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lien",
+							"value": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vex_10.jpg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/links/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"links",
+						""
+					],
+					"query": [
+						{
+							"key": "lien",
+							"value": "mama",
+							"disabled": true
+						},
+						{
+							"key": "filename",
+							"value": "papa",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETCOMPRESSED",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GETTHUMBNAILS",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEALL",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEONE",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

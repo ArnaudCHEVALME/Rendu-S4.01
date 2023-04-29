@@ -18,6 +18,7 @@ import typeactuRouter from "./routes/typeactu.router";
 import typesceneRouter from "./routes/typescene.router";
 import typestandRouter from "./routes/typestand.router";
 import utilisateurRouter from "./routes/utilisateur.router";
+import musicStreamRouter from "./routes/music-stream.router";
 
 import dotenv from "dotenv";
 import path from 'path';
@@ -84,6 +85,7 @@ app.use('/typeactu', typeactuRouter);
 app.use('/typescene', typesceneRouter);
 app.use('/typestand', typestandRouter);
 app.use('/utilisateur', utilisateurRouter);
+app.use(musicStreamRouter);
 
 app.use('/status', (req, res) => {
     res.status(200).json({
