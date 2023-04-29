@@ -13,7 +13,7 @@ const getTypeActus = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des types d'actualités."
@@ -39,7 +39,7 @@ const getTypeActuById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération du type d'actualité."
@@ -59,7 +59,7 @@ const createTypeActu = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création du type d'actualité."
@@ -85,7 +85,7 @@ const editTypeActu = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification du type d'actualité."
@@ -107,7 +107,7 @@ const deleteTypeActus = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression des types d'actualités."
@@ -133,7 +133,7 @@ const deleteTypeActuById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du type d'actualité."

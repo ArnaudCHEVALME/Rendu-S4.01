@@ -24,7 +24,7 @@ const getActualites = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des actualités."
@@ -59,7 +59,7 @@ const getActualiteById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération de l'actualité."
@@ -79,7 +79,7 @@ const createActualite = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création de l'actualité."
@@ -104,7 +104,7 @@ const editActualite = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification de l'actualité."
@@ -126,7 +126,7 @@ const deleteActualites = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression des actualités."
@@ -151,7 +151,7 @@ const deleteActualiteById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de l'actualité."

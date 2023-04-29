@@ -1,5 +1,5 @@
 <template>
-  <v-card style="display: flex; flex-direction: column; align-content: center; justify-content: center">
+  <v-card style="display: flex; flex-direction: column; align-content: center; justify-content: center; width: 300px">
     <v-btn @click="toggleChat()" >{{ visible? "Close chat" : "Open Chat" }}</v-btn>
     <v-card v-if="visible">
       <div class="chat-container">

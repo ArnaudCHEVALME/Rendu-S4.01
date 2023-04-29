@@ -85,7 +85,7 @@ app.use('/typeactu', typeactuRouter);
 app.use('/typescene', typesceneRouter);
 app.use('/typestand', typestandRouter);
 app.use('/utilisateur', utilisateurRouter);
-app.use(musicStreamRouter);
+app.use('music', musicStreamRouter);
 
 app.use('/status', (req, res) => {
     res.status(200).json({

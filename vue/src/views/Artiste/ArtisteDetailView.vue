@@ -56,7 +56,7 @@ export default {
         this.artiste = response.data.data;
       }
       catch (e) {
-        console.log(e);
+        console.error(e);
       }
     },
   },

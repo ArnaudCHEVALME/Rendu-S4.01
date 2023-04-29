@@ -8,7 +8,6 @@ import axios from 'axios';
 export default {
   mounted() {
     const code = new URLSearchParams(window.location.search).get('code');
-    console.log(code)
     axios.post('http://localhost:3000/auth/github/callback', { code })
         .then(response => {
           localStorage.setItem("user", JSON.stringify(response.data))

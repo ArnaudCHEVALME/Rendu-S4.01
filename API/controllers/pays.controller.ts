@@ -13,7 +13,7 @@ const getPays = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des pays."
@@ -39,7 +39,7 @@ const getPaysById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération du pays."
@@ -59,7 +59,7 @@ const createPays = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création du pays."
@@ -85,7 +85,7 @@ const editPays = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification du pays."
@@ -107,7 +107,7 @@ const deletePays = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du pays."
@@ -133,7 +133,7 @@ const deletePaysById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du pays."

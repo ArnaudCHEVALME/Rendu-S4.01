@@ -26,7 +26,7 @@ const getCategories = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des catégories."
@@ -52,7 +52,7 @@ const getCategorieById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération de la catégorie."
@@ -72,7 +72,7 @@ const createCategorie = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création de la catégorie."
@@ -97,7 +97,7 @@ const editCategorie = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification de la catégorie."
@@ -119,7 +119,7 @@ const deleteCategories = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de la catégorie."
@@ -144,7 +144,7 @@ const deleteCategorieById = async (req: Request, res: Result) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression de la catégorie."

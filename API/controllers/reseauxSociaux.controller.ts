@@ -13,7 +13,7 @@ const getReseauxSociaux = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération des réseaux sociaux."
@@ -39,7 +39,7 @@ const getReseauSocialById = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la récupération du réseau social."
@@ -59,7 +59,7 @@ const createReseauSocial = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la création du réseau social."
@@ -94,7 +94,7 @@ const editReseauSocial = async (req: Request, res: Response) => {
         }
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la modification du réseau social."
@@ -116,7 +116,7 @@ const deleteReseauxSociaux = async (req: Request, res: Response) => {
         res.status(200).json(response);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression des réseaux sociaux."
@@ -151,7 +151,7 @@ const deleteReseauSocialById = async (req: Request, res: Response) => {
         }
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).json({
             error: 1,
             message: "Une erreur est survenue lors de la suppression du réseau social."

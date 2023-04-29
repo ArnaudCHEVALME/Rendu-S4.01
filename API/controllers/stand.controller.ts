@@ -153,7 +153,7 @@ const editStand = async (req: Request, res: Result) => {
         res.status(200).json(result);
     }
     catch (e) {
-        console.log(e)
+        console.error(e)
         const result = {
             error: 1,
             message: "Une erreur est survenue lors de la modification du stand."

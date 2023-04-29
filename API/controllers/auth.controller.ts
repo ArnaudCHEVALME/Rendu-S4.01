@@ -9,7 +9,7 @@ const signup = async (req: Request, res: Response) => {
         const utilisateur = await dbCommon.utilisateurs.create(req.body);
         res.status(200).send(utilisateur);
     } catch (e) {
-        console.log(e);
+        console.error(e);
         res.status(500).send({
             message: "Erreur lors de la création de l'utilisateur"
         });
@@ -60,7 +60,7 @@ const signin = (req, res) => {
             });
         })
         .catch((e) => {
-            console.log(e);
+            console.error(e);
             res.status(500).send({
                 message: "Erreur lors de la connexion"
             });
@@ -100,7 +100,7 @@ const refreshToken = async (req, res) => {
             refreshToken: refreshToken.token
         });
     } catch (e) {
-        console.log(e);
+        console.error(e);
         return res.status(500).json({message: 'Erreur lors du rafraîchissement du token'});
     }
 }
